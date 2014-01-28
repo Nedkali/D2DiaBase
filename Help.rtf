@@ -63,6 +63,11 @@ Now we will group all items that have an Endhanced Defense value greater that 10
 \cf1\b How often should I backup?\par
 \cf2\b0 Regularly, if ever an error is created in the database file you will be rewarded by having regular backups. There is an easy to use automated backup system intergrated into the application. Be sure to take full advantage of it. Remember this is currently a beta release and errors may still exist.\par
 \par
+\cf1\b How do I restore a backup if DiaBase wont stop crashing?\par
+\cf2\b0 Obviously you cant use the restore backup function if the database file is so corrupted that it continually crashes the application. \par
+You can however manually restore the backup by simply copying the file in the Backup directory and use it to replace the file in the Database directory. Then restart the app as normal. \par
+If the DiaBase still crashes the database file may be corrupted also meaning it may be nessicary to delete the file in the database directory altogether. This will erase the current database and trigger Diabase to create a new file on startup. \par
+\par
 \cf1\b Does DiaBase keep track of my items?\par
 \cf2\b0 Yes but only to the point of the first import of etal logs, after that there is no monitoring, the key here is if you move an item or trade the item you must either remove it from the database or tell it which char now has the item. Thats the main point of this program, to assist the user keep track and maintain the database.\par
 \par
