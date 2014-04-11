@@ -69,9 +69,11 @@ function Log_DoIt(verbose) {
 			var fileName = "AMS/MuleInventory/" + me.account + "_" + me.name + ".txt";
 			_file = FileOpen(fileName, 1);
 			if (_file) {
-				_file.WriteLine("");
+				_file.WriteLine("Unknown");
 				_file.WriteLine(me.account);
 				_file.WriteLine(me.name);
+				_file.WriteLine("Unknown");
+				
 				_file.WriteLine("");
 				for (var i = 0; i < logged.length; i++)
 					ItemDecipher(_file, logged[i], verbose);
