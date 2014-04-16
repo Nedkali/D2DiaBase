@@ -3,7 +3,7 @@
 //////////////////////////////////////
 
 
-var logTheseMules = 7;// logs all characters - account name and pass is used from profile settings
+var logTheseMules = me.charloc;// logs all characters up to and including char postion set in manager
 
 //////////////////////////////////////
 //       Minimum Game Length:       //
