@@ -8,15 +8,12 @@ var justGrabIt = false;
 var mulepos = NT_File("AMS/MuleStatus/" + me.account + "_locstatus.txt", 0);
 var muleAccount = NT_File("AMS/MuleStatus/" + me.account + "_muleaccount.txt", 0);
 var databasesupport = true;
-var mypass = "Unknown";
 
 function NTMain()
 {
 	_endTime = GetTickCount() + 1000 * 60 * 3 + 1000 * 15;
 	
 	Say("mule position is " + mulepos);
-	
-	getmulepassword();
 	
 	if(justGrabIt) 
 		_endTime = GetTickCount() + 1000 * 60 * 1;
@@ -145,10 +142,10 @@ function NTMU_TLMuleInventory() {
 	
 	Print(COLOR_3 + "[Toothless Inventory] - Load");
    
-	if(databasesupport && _ItemsOnGround())
+	if(databasesupport)
 		Log_DoIt(true);
 	else
-		TLI_MuledIt(true);
+		TLI_MuledIt();
 	
 	Print ("Finished");
 }
@@ -186,11 +183,6 @@ function TLI_MuledIt(verbose) {
 			var fileName = "AMS/MuleLogs/" + muleAccount + "_" + me.name + ".txt";
 			_file = FileOpen(fileName, 1);
 			if (_file) {
-				_file.WriteLine(me.account);//Pickitbot
-				_file.WriteLine(muleAccount);//
-				_file.WriteLine(me.name);//Mules name
-				_file.WriteLine(mypass);//			
-				_file.WriteLine("");//Blank line
 				for (var i = 0; i < logged.length; i++)
 					TLI_LogItem(_file, logged[i], verbose);
 				_file.Close();
@@ -329,12 +321,10 @@ function Log_DoIt(verbose) {
 			var fileName = "AMS/MuleInventory/" + me.account + "_" + me.name + ".txt";
 			_file = FileOpen(fileName, 1);
 			if (_file) {
-			_file.WriteLine(me.account);//Pickitbot
-			_file.WriteLine(muleAccount);//
-			_file.WriteLine(me.name);//Mules name
-			_file.WriteLine(mypass);//			
-			_file.WriteLine("");//Blank line
-			
+			_file.WriteLine(me.account);
+			_file.WriteLine(MuleAccount);
+			_file.WriteLine(me.name);
+			_file.WriteLine("");
 				for (var i = 0; i < logged.length; i++)
 					ItemDecipher(_file, logged[i], verbose);
 				_file.Close();
@@ -521,22 +511,4 @@ function GetItemBase(id)
 	}
 	
 	return "Unknown";
-}
-
-function getmulepassword(){
-
-	Myfile = FileOpen("AMS/MuleLogs/"+me.account+"_muleaccount.txt",0);
-	if(!Myfile)
-		return;
-	var temp = Myfile.ReadLine();
-	while(temp != ""){
-		if(temp.indexOf(muleAccount) != -1){
-			temp = temp.split("/")
-			mypass = temp[1];
-		}
-		temp = Myfile.ReadLine();
-	}
-
-	Myfile.Close();
-
 }
